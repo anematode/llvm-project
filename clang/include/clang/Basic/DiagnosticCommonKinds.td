@@ -338,6 +338,8 @@ def err_target_unsupported_tp_hard : Error<
   "hardware TLS register is not supported for the %0 sub-architecture">;
 def err_target_unsupported_mcmse : Error<
   "-mcmse is not supported for %0">;
+def err_target_unsupported_stackaddr : Error<
+  "getting the stack address is not supported for the %0 target">;
 def err_opt_not_valid_with_opt : Error<
   "option '%0' cannot be specified with '%1'">;
 def err_opt_not_valid_with_opt_on_target : Error<

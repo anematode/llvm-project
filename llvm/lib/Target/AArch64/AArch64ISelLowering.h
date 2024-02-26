@@ -1116,6 +1116,7 @@ private:
   SDValue LowerVACOPY(SDValue Op, SelectionDAG &DAG) const;
   SDValue LowerVAARG(SDValue Op, SelectionDAG &DAG) const;
   SDValue LowerFRAMEADDR(SDValue Op, SelectionDAG &DAG) const;
+  SDValue LowerSTACKADDR(SDValue Op, SelectionDAG &DAG) const;
   SDValue LowerSPONENTRY(SDValue Op, SelectionDAG &DAG) const;
   SDValue LowerRETURNADDR(SDValue Op, SelectionDAG &DAG) const;
   SDValue LowerGET_ROUNDING(SDValue Op, SelectionDAG &DAG) const;

@@ -13446,6 +13446,31 @@ Note that calling this intrinsic does not prevent function inlining or
 other aggressive transformations, so the value returned may not be that
 of the obvious source-language caller.
 
+
+'``llvm.stackaddress``' Intrinsic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Syntax:
+"""""""
+
+::
+
+      declare ptr @llvm.returnaddress()
+
+Overview:
+"""""""""
+
+The '``llvm.stackaddress``' intrinsic attempts to return a
+target-specific value indicating the current value of the stack
+pointer.
+
+Semantics:
+""""""""""
+
+The '``llvm.stackaddress``' intrinsic either returns a pointer indicating
+the current location of the stack pointer, or zero if it cannot be
+identified.
+
 '``llvm.swift.async.context.addr``' Intrinsic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

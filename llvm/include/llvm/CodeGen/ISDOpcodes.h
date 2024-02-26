@@ -94,6 +94,10 @@ enum NodeType {
   FRAMEADDR,
   RETURNADDR,
 
+  /// STACKADDR - Represents the llvm.stackaddress intrinsic. This node takes
+  /// no operand and returns the current value of the stack pointer.
+  STACKADDR,
+
   /// ADDROFRETURNADDR - Represents the llvm.addressofreturnaddress intrinsic.
   /// This node takes no operand, returns a target-specific pointer to the
   /// place in the stack frame where the return address of the current

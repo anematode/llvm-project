@@ -1328,6 +1328,8 @@ static Type *DecodeFixedType(ArrayRef<Intrinsic::IITDescriptor> &Infos,
   IITDescriptor D = Infos.front();
   Infos = Infos.slice(1);
 
+  llvm::errs() << D.Kind << "\n";
+
   switch (D.Kind) {
   case IITDescriptor::Void: return Type::getVoidTy(Context);
   case IITDescriptor::VarArg: return Type::getVoidTy(Context);

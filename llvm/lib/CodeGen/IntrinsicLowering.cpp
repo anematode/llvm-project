@@ -288,12 +288,20 @@ void IntrinsicLowering::LowerIntrinsicCall(CallInst *CI) {
     break;
   case Intrinsic::returnaddress:
   case Intrinsic::frameaddress:
+  case Intrinsic::stackaddress: {
+    const char *DisplayName;
+    switch (Callee->getIntrinsicID()) {
+      case Intrinsic::returnaddress: DisplayName = "return"; break;
+      case Intrinsic::frameaddress: DisplayName = "frame"; break;
+      default: DisplayName = "stack"; break;
+    }
     errs() << "WARNING: this target does not support the llvm."
-           << (Callee->getIntrinsicID() == Intrinsic::returnaddress ?
-             "return" : "frame") << "address intrinsic.\n";
+           << DisplayName
+           << "address intrinsic.\n";
     CI->replaceAllUsesWith(
         ConstantPointerNull::get(cast<PointerType>(CI->getType())));
     break;
+  }
   case Intrinsic::addressofreturnaddress:
     errs() << "WARNING: this target does not support the "
               "llvm.addressofreturnaddress intrinsic.\n";

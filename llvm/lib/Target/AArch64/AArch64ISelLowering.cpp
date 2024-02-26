@@ -6233,6 +6233,8 @@ SDValue AArch64TargetLowering::LowerOperation(SDValue Op,
     return LowerFRAMEADDR(Op, DAG);
   case ISD::SPONENTRY:
     return LowerSPONENTRY(Op, DAG);
+  case ISD::STACKADDR:
+    return LowerSTACKADDR(Op, DAG);
   case ISD::RETURNADDR:
     return LowerRETURNADDR(Op, DAG);
   case ISD::ADDROFRETURNADDR:
@@ -10225,6 +10227,16 @@ SDValue AArch64TargetLowering::LowerADDROFRETURNADDR(SDValue Op,
   SDValue Offset = DAG.getConstant(8, DL, getPointerTy(DAG.getDataLayout()));
 
   return DAG.getNode(ISD::ADD, DL, VT, FrameAddr, Offset);
+}
+
+SDValue AArch64TargetLowering::LowerSTACKADDR(SDValue Op,
+                                              SelectionDAG &DAG) const {
+  MachineFunction &MF = DAG.getMachineFunction();
+
+  EVT VT = Op.getValueType();
+  SDLoc DL(Op);
+
+  return DAG.getCopyFromReg(DAG.getEntryNode(), DL, AArch64::SP, VT);
 }
 
 SDValue AArch64TargetLowering::LowerRETURNADDR(SDValue Op,

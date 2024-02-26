@@ -6113,6 +6113,11 @@ void SelectionDAGBuilder::visitIntrinsicCall(const CallInst &I,
              DAG.getNode(ISD::ADDROFRETURNADDR, sdl,
                          TLI.getValueType(DAG.getDataLayout(), I.getType())));
     return;
+  case Intrinsic::stackaddress:
+    setValue(&I,
+             DAG.getNode(ISD::STACKADDR, sdl,
+                         TLI.getValueType(DAG.getDataLayout(), I.getType())));
+    return;
   case Intrinsic::sponentry:
     setValue(&I,
              DAG.getNode(ISD::SPONENTRY, sdl,
